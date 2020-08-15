@@ -36,7 +36,6 @@
         </div>
     </div>
 
-
     <script>
 
         const searchPressed = document.getElementById("search-btn");
@@ -50,7 +49,7 @@
             fetch('https://api.openweathermap.org/data/2.5/weather?q='+ cityName +'&appid=f76d4df5a62848110fca9e75d3b916eb')
             .then(res => res.json())
             .then(data => weatherInfo(data))
-            .catch(err => alert("Wrong City Name"))
+            .catch(err => alert("Invalid City Name."))
         }
         function weatherInfo(data){
 

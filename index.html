@@ -30,14 +30,14 @@
         </form>
         <div class="weather-status text-white text-center">
             <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
-            <h1 id="show-city-name">Dhaka</h1>
-            <h3><span id="temp">38.06</span>&deg;C</h3>
-            <h1 class="lead" id="description">Clouds</h1>
+            <h1 id="show-city-name"></h1>
+            <h3><span id="temp"></span>&deg;C</h3>
+            <h5  id="description"></h5>
         </div>
     </div>
 
-
     <script>
+
         const searchPressed = document.getElementById("search-btn");
         searchPressed.addEventListener("click", function(){
             const cityName = document.getElementById("input-city-name").value;
@@ -49,6 +49,7 @@
             fetch('https://api.openweathermap.org/data/2.5/weather?q='+ cityName +'&appid=f76d4df5a62848110fca9e75d3b916eb')
             .then(res => res.json())
             .then(data => weatherInfo(data))
+            .catch(err => alert("Invalid City Name."))
         }
         function weatherInfo(data){
 
@@ -59,9 +60,10 @@
             document.getElementById('description').innerText = weatherDescription;
 
             const cityNameOutput = data['name'];
-            document.getElementById("show-city-name").innerText = cityNameOutput;
+            const countryName = data['sys'].country;
+            document.getElementById("show-city-name").innerText = cityNameOutput + ", " + countryName;
 
-            console.log(data);
+            
             
             
         }
